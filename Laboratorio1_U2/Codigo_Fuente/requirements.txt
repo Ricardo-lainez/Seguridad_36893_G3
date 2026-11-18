@@ -1,0 +1,136 @@
+# ============================================================
+# LABORATORIO DE CRIPTOGRAFÍA CLIENTE-SERVIDOR
+# Inventario de requisitos y componentes utilizados
+# Universidad de las Fuerzas Armadas ESPE - Noviembre 2026
+#
+# Este archivo reúne el entorno y los recursos utilizados.
+# Solo las dependencias Python aparecen como líneas instalables.
+# Las demás herramientas se instalan/configuran por separado.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. SISTEMA OPERATIVO Y VIRTUALIZACIÓN
+# ------------------------------------------------------------
+# Sistema operativo de las máquinas virtuales:
+#   Ubuntu 26.04 LTS Desktop
+#
+# Software de virtualización del equipo anfitrión:
+#   Oracle VM VirtualBox 7.1.4
+#
+# Máquinas virtuales del laboratorio:
+#   cripto-servidor
+#       - 2 CPU
+#       - 3072 MB RAM
+#       - Disco virtual de 25 GB
+#       - IP de red interna: 10.10.10.10/24
+#
+#   cripto-cliente
+#       - 2 CPU
+#       - 4096 MB RAM
+#       - Disco virtual de 25 GB
+#       - IP de red interna: 10.10.10.20/24
+#
+# Red interna:
+#   Nombre: cripto-lan
+#   Segmento: 10.10.10.0/24
+#   Interfaz: enp0s8
+#   Sin puerta de enlace.
+#
+# El adaptador NAT se utilizó temporalmente para instalar paquetes
+# y se desactivó para la captura final del tráfico.
+
+
+# ------------------------------------------------------------
+# 2. HERRAMIENTAS DEL SISTEMA UTILIZADAS
+# ------------------------------------------------------------
+# Python:
+#   Python 3.14.4
+#
+# OpenSSL:
+#   OpenSSL 3.5.5
+#   Uso: generación y revisión de certificados, claves y pruebas TLS.
+#
+# Wireshark:
+#   Wireshark 4.6.4 (actividad G; instalado desde repositorios Ubuntu).
+#   Uso: captura y análisis de paquetes y registros TLS.
+#
+# curl:
+#   curl 8.18.0
+#   Uso: solicitudes HTTPS GET y POST desde el cliente.
+#
+# tcpdump:
+#   tcpdump 4.99.6
+#   Uso: herramienta de captura de tráfico.
+#
+# Paquetes de sistema instalados en Ubuntu:
+#   openssl
+#   python3
+#   python3-venv
+#   python3-pip
+#   curl
+#   wireshark
+#   tcpdump
+#
+# Comando de instalación utilizado:
+#   sudo apt update
+#   sudo apt install -y openssl python3 python3-venv python3-pip curl wireshark tcpdump
+#
+# Para administración/transferencia mediante SSH, cuando sea necesario:
+#   openssh-server
+#   openssh-client
+
+
+# ------------------------------------------------------------
+# 3. DEPENDENCIAS PYTHON DEL PROYECTO
+# ------------------------------------------------------------
+# Instalar dentro del entorno virtual con:
+#   python3 -m venv .venv
+#   source .venv/bin/activate
+#   python -m pip install -r requirements.txt
+
+cryptography==50.0.2
+argon2-cffi==25.1.0
+
+
+# ------------------------------------------------------------
+# 4. ARCHIVOS Y COMPONENTES DEL LABORATORIO
+# ------------------------------------------------------------
+# Estos archivos forman parte del proyecto, pero NO son paquetes
+# instalables mediante pip:
+#
+#   crypto_lab.py
+#       Programa ejecutado en cliente y servidor.
+#       Contiene las operaciones de las actividades A a E:
+#       SHA-256, AES-256-GCM, RSA, firma digital, X25519 y Argon2id.
+#
+#   server_https.py
+#       Programa ubicado en cripto-servidor.
+#       Implementa el servicio HTTPS didáctico en el puerto 8443.
+#
+#   README.md
+#       Documentación del proyecto, instalación, configuración,
+#       ejecución de actividades y resultados de las pruebas.
+#
+#
+# Archivos generados durante las pruebas (no son dependencias):
+#   acta.txt
+#   acta.txt.aesgcm
+#   aes.key o <archivo>.key (según la versión del programa)
+#   rsa_private.pem
+#   rsa_public.pem
+#   acta.txt.sig
+#   password.hash
+#   server.crt
+#   server.key
+#   T09_Captura_Trafico_TLS.pcapng
+#
+# No publicar ni compartir claves privadas, claves AES, passphrases
+# ni credenciales. El archivo server.key permanece en el servidor.
+
+
+# ------------------------------------------------------------
+# 5. RECURSOS
+# ------------------------------------------------------------
+# GitHub: https://github.com/Ricardo-lainez/Seguridad_36893_G3.git
+# Drive: https://drive.google.com/drive/folders/1_0FrE8yuELkaMu5Tu6RjaE_lzp_hISje?usp=drive_link
